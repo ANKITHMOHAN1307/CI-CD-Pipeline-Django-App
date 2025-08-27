@@ -1,0 +1,2 @@
+# Automated-CI-CD-Pipeline-Integration-for-a-Django-Web-Application
+This project demonstrates the implementation of a complete CI/CD (Continuous Integration and Continuous Deployment) pipeline with DevSecOps practices using a simple Django-based web application. While the Django application the main focus of the project lies in automating the entire software delivery lifecycle, from code commit to cloud deployment.

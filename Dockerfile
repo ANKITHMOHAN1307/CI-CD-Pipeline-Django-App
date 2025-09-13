@@ -2,10 +2,13 @@
 FROM python:3.10-slim
 
 #set working directory
-WORKDIR /app
+WORKDIR /App
 
-#copy app code into container
-COPY app.py /app
+#Install the dependencies
+COPY requirement.txt .
+
+#copy Django project
+COPY . . 
 
 #Run the app
-CMD [ "python", "app.py" ]
+CMD [ "gunicorn", "--bind", "0.0.0.0:800", "app.wsi:application"]

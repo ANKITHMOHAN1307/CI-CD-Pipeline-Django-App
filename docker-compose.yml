@@ -1,11 +1,19 @@
-
-
 services:
   web:
     build: .
     ports:
       - "8000:8000"
+    environment:
+      - DEBUG=True
+      - SECRET_KEY=your-secret-key-here
     volumes:
       - .:/app
-    command: >
-       sh -c "python App/manage.py migrate && gunicorn --bind 0.0.0.0:8000 app.wsgi:application"
+    command: python manage.py runserver 0.0.0.0:8000
+
+  web-prod:
+    build: .
+    ports:
+      - "8001:8000"
+    environment:
+      - DEBUG=False
+      - SECRET_KEY=your-production-secret-key

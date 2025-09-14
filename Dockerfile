@@ -1,14 +1,34 @@
-#use offical Python image
-FROM python:3.10-slim
+# Use Python 3.11 slim image
+FROM python:3.11-slim
 
-#set working directory
-WORKDIR /App
+# Set environment variables
+ENV PYTHONDONTWRITEBYTECODE=1
+ENV PYTHONUNBUFFERED=1
 
-#Install the dependencies
-COPY requirement.txt .
+# Set work directory
+WORKDIR /app
 
-#copy Django project
-COPY . . 
+# Install system dependencies
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends \
+        gcc \
+    && rm -rf /var/lib/apt/lists/*
 
-#Run the app
-CMD [ "gunicorn", "--bind", "0.0.0.0:800", "app.wsi:application"]
+# Install Python dependencies
+COPY requirements.txt /app/
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copy project
+COPY . /app/
+
+# Create staticfiles directory
+RUN mkdir -p /app/staticfiles
+
+# Collect static files
+RUN python manage.py collectstatic --noinput
+
+# Expose port
+EXPOSE 8000
+
+# Run the application
+CMD ["gunicorn", "--bind", "0.0.0.0:8000", "myproject.wsgi:application"]

@@ -25,5 +25,5 @@ jobs:
         with:
           push: true
           tags: |
-            ankith1307/myprojct:latest
+            ankith1307/myprojct:newtagadded
             ankith1307/myprojct:${{ github.sha }}

@@ -22,7 +22,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY . /app/
 
 # Create staticfiles directory
-RUN mkdir -p /app/staticfiles
+RUN mkdir -p /app/staticfiles && chmod -R 755 /app/staticfiles
 
 # Collect static files
 RUN python manage.py collectstatic --noinput

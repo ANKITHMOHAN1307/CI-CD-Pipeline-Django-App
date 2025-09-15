@@ -1,3 +1,7 @@
 from django.test import TestCase
+from django.urls import reverse
 
-# Create your tests here.
+class SimpleTestCase(TestCase):
+    def test_homepage_status_code(self):
+        response = self.client.get(reverse('home'))  # assuming you have a 'home' view
+        self.assertEqual(response.status_code, 200)

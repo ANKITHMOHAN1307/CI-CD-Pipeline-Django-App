@@ -8,6 +8,7 @@ services:
       - SECRET_KEY=your-secret-key-here
     volumes:
       - .:/app
+      - sqlite_data:/app/db.sqlite3
     command: python manage.py runserver 0.0.0.0:8000
 
   web-prod:
@@ -17,3 +18,6 @@ services:
     environment:
       - DEBUG=False
       - SECRET_KEY=your-production-secret-key
+
+volumes:
+  sqlite_data:

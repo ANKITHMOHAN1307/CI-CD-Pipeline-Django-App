@@ -22,7 +22,7 @@ jobs:
           pip install -r requirements.txt
 
       - name: Run DB integration tests
-        run: python manage.py test myapp.tests_db_integration
+        run: python manage.py test myapp.test
 
 
   #  Build Docker Image (only if tests pass)

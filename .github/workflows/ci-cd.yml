@@ -26,8 +26,9 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Run Django tests
-        run: python manage.py test
+      - name: run database integration test
+        run: |
+          docker exec django-test python manage.py test myapp.tests_db_integration
 
   #  Build Docker Image (only if tests pass)
   build_image:

@@ -1,0 +1,20 @@
+{% extends "master.html" %}
+
+{% block title %}
+  Club
+{% endblock %}
+
+
+{% block content %}
+
+<form method="POST">
+    {% csrf_token %}
+    <h2>User Login</h2>
+
+    <input type="email" name="email" placeholder="Enter Email" required><br>
+    <input type="password" name="password" placeholder="Enter Password" ><br>
+
+    <button type="submit">Login</button>
+</form>
+
+{% endblock %}

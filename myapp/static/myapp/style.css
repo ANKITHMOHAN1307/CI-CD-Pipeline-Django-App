@@ -1,0 +1,10 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5e4e4;
+    margin: 100px;
+    padding: 100px;
+}
+
+h1, h2, h3 {
+    color: #333;
+}

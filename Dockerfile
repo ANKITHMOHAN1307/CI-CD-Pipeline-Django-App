@@ -12,7 +12,13 @@ WORKDIR /app
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
         gcc \
-    && rm -rf /var/lib/apt/lists/*
+        libpq-dev \
+        default-libmysqlclient-dev \
+        build-essential \
+        libjpeg-dev \
+        zlib1g-dev \
+        curl \
+        && rm -rf /var/lib/apt/lists/*
 
 # Install Python dependencies
 COPY requirements.txt /app/

@@ -16,6 +16,8 @@ def input_view(request):
          email = request.POST.get("email")
          password = request.POST.get("password")
 
+         if not name or not email:
+            return render(request, "input.html", {"error": "Name and email are required"})
          if UserInput.objects.filter(email = email).exists():
             return redirect("failed_page")
 

@@ -26,11 +26,18 @@ COPY requirements.txt .
 RUN pip install --upgrade pip
 RUN pip install --no-cache-dir -r requirements.txt
 
+
+ 
 # Copy project
 COPY . .
+
+
+# collect static files
+RUN python manage.py collectstatic --noinput
 
 # Expose port (optional, for local dev)
 EXPOSE 8000
 
 # Default command
-CMD ["gunicorn", "your_project_name.wsgi:application", "--bind", "0.0.0.0:8000"]
+CMD ["gunicorn", "myproject.wsgi:application", "--bind", "0.0.0.0:8000"]
+

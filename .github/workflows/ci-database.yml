@@ -13,8 +13,8 @@ jobs:
       mysql:
         image: mysql:8.0
         env:
-          MYSQL_ROOT_PASSWORD: root
-          MYSQL_DATABASE: test_db
+          MYSQL_ROOT_PASSWORD: Ankith@5space
+          MYSQL_DATABASE: django
         ports:
           - 3306:3306
         options: >-

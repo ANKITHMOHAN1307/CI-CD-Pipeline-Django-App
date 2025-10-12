@@ -17,6 +17,9 @@ This repository includes a **CI workflow** for building and publishing Docker im
 3. **Build image** → Runs `docker build`.  
 4. **Push image** → Uploads to Docker Hub registry.  
 
+
+[![CI Django + Docker](https://github.com/ANKITHMOHAN1307/CI-CD-Pipeline-Django-App/actions/workflows/ci-database.yml/badge.svg?branch=main&event=milestone)](https://github.com/ANKITHMOHAN1307/CI-CD-Pipeline-Django-App/actions/workflows/ciimage.yml)
+
 ##  Learning Outcomes
 - Automates Docker image creation.  
 - Ensures reliable deployment builds.  

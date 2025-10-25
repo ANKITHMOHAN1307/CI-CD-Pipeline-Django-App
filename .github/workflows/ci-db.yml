@@ -91,8 +91,8 @@ jobs:
     steps:
       - name: Wait for Docker Hub to process image
         run: |
-          echo "⏳ Waiting 100 seconds for Docker Hub to process the image..."
-          sleep 100
+          echo "⏳ Waiting 30 seconds for Docker Hub to process the image..."
+          sleep 30
 
       - name: Trigger Railway deployment via API
         run: |

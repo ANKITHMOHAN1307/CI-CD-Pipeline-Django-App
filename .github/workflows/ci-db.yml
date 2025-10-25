@@ -108,7 +108,7 @@ jobs:
           railway whoami || echo "Authenticated successfully with token."
 
           echo "🚀 Triggering Railway redeploy..."
-          railway redeploy --service "${{ secrets.RAILWAY_SERVICE_ID }}" --yes
+          railway redeploy --service "${{ secrets.RAILWAY_SERVICE_NAME }}" --yes
 
       - name: Deployment summary
         run: |

@@ -2,7 +2,7 @@ name: CI Django + DB + Docker + Railway Auto-Deploy
 
 on:
   push:
-    branches: ["database"]
+    branches: ["Deployment"]
 
 jobs:
   # Job 1: Run tests with MySQL

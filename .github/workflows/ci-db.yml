@@ -109,18 +109,18 @@ jobs:
 
           echo "🚀 Triggering Railway redeploy..."
           railway redeploy --service "${{ secrets.RAILWAY_SERVICE_NAME }}" --yes
-
+          
       - name: Deployment summary
         run: |
-          echo "======================================"
-          echo "🎉 Deployment Process Complete!"
-          echo "======================================"
-          echo "📦 Docker Image: ankith1307/myprojct:latest"
-          echo "🏷️  Commit SHA: ${{ github.sha }}"
-          echo "👤 Deployed by: ${{ github.actor }}"
-          echo "🌿 Branch: ${{ github.ref_name }}"
-          echo "🚀 Deployed to: Railway (${ { secrets.RAILWAY_ENVIRONMENT_NAME } })"
-          echo "======================================"
-
+            echo "======================================"
+            echo "🎉 Deployment Process Complete!"
+            echo "======================================"
+            echo "📦 Docker Image: ankith1307/myprojct:latest"
+            echo "🏷️  Commit SHA: ${{ github.sha }}"
+            echo "👤 Deployed by: ${{ github.actor }}"
+            echo "🌿 Branch: ${{ github.ref_name }}"
+            echo "🚀 Deployed to: Railway (${{ secrets.RAILWAY_ENVIRONMENT_NAME }})"
+            echo "======================================"
+          
 
 

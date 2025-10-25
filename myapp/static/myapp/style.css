@@ -1,8 +1,8 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #f5e4e4;
+    background-color: rgb(184, 235, 82);
     margin: 100px;
-    padding: 100px;
+    padding: 100px; 
 }
 
 h1, h2, h3 {

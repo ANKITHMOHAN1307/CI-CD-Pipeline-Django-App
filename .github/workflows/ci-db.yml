@@ -99,19 +99,16 @@ jobs:
       - name: Install Railway CLI
         run: curl -fsSL https://railway.app/install.sh | sh
 
-      - name: Authenticate Railway CLI
-        run: |
-          echo "🔑 Authenticating Railway CLI..."
-          railway whoami || railway login --token $RAILWAY_TOKEN
-        env:
-          RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
-
       - name: Trigger Railway Redeploy
-        run: |
-          echo "🚀 Triggering Railway redeploy for service..."
-          railway redeploy --service "${{ secrets.RAILWAY_SERVICE_NAME }}" --environment "${{ secrets.RAILWAY_ENVIRONMENT_NAME }}"
         env:
           RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
+        run: |
+          echo "🔑 Authenticating Railway CLI using token..."
+          export RAILWAY_TOKEN="${RAILWAY_TOKEN}"
+          railway whoami || echo "Authenticated successfully with token."
+
+          echo "🚀 Triggering Railway redeploy..."
+          railway redeploy --service "${{ secrets.RAILWAY_SERVICE }}" --yes
 
       - name: Deployment summary
         run: |

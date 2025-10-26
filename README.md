@@ -1,5 +1,5 @@
 ### Automated-CI-CD-Pipeline-Integration-for-a-Django-Web-Application
-This project demonstrates the implementation of a complete CI/CD (Continuous Integration and Continuous Deployment) pipeline with DevSecOps practices using a simple Django-based web application. While the Django application the main focus of the project lies in automating the entire software delivery lifecycle, from code commit to cloud deployment.
+This project demonstrates the implementation of a complete CI/CD (Continuous Integration and Continuous Deployment) pipeline with DevOps practices using a simple Django-based web application. While the Django application the main focus of the project lies in automating the entire software delivery lifecycle, from code commit to cloud deployment.
 
 ![Build Status](https://img.shields.io/github/actions/workflow/status/ankith1307/myproject/deploy.yml?branch=deployment&label=Build%20Status&style=for-the-badge&color=blue)
 ![Deployment](https://img.shields.io/badge/Deployed%20to-Railway-green?style=for-the-badge&logo=railway)
@@ -147,13 +147,8 @@ Access locally: **[http://127.0.0.1:8000/](http://127.0.0.1:8000/)**
 ## 📊 Pipeline Flow
 
 ```mermaid
-graph TD
-A[Code Push to GitHub] --> B[GitHub Actions Triggered]
-B --> C[Build Docker Image]
-C --> D[Push Image to Docker Hub]
-D --> E[Deploy on Railway]
-E --> F[App Live 🚀]
-```
+<img width="1920" height="1020" alt="image" src="https://github.com/user-attachments/assets/ac79278b-a4df-473d-8314-81381e04e5fb" />
+
 
 
 

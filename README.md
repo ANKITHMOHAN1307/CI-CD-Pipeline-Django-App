@@ -1,7 +1,6 @@
 # 🐳 Docker Image Build Workflow (`ciimage.yml`)
 
-[![Docker Build Status](https://img.shields.io/github/actions/workflow/status/ANKITHMOHAN1307/CI-CD-Pipeline-Django-App/ciimage.yml?branch=newbrach-docker&label=Docker%20Build&style=for-the-badge&color=blue)](https://github.com/ANKITHMOHAN1307/CI-CD-Pipeline-Django-App/actions/workflows/ciimage.yml)
-
+[![Docker Build Status](https://img.shields.io/github/actions/workflow/status/ANKITHMOHAN1307/CI-CD-Pipeline-Django-App/ciImage.yml?branch=newbrach-docker&label=Docker%20Build&style=for-the-badge&color=blue)](https://github.com/ANKITHMOHAN1307/CI-CD-Pipeline-Django-App/actions/workflows/ciImage.yml)
 ---
 
 ## 🧠 Overview

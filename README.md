@@ -147,8 +147,13 @@ Access locally: **[http://127.0.0.1:8000/](http://127.0.0.1:8000/)**
 ## 📊 Pipeline Flow
 
 ```mermaid
-<img width="1920" height="1020" alt="image" src="https://github.com/user-attachments/assets/ac79278b-a4df-473d-8314-81381e04e5fb" />
-
+flowchart LR
+    A[Code Push to GitHub] --> B[GitHub Actions Triggered]
+    B --> C[Build Docker Image]
+    C --> D[Push Image to Docker Hub]
+    D --> E[Deploy on Railway]
+    E --> F[App Live 🚀]
+```
 
 
 

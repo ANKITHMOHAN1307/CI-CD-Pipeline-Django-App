@@ -1,31 +1,83 @@
-# Automated-CI-CD-Pipeline-Integration-for-a-Django-Web-Application
-This project demonstrates the implementation of a complete CI/CD (Continuous Integration and Continuous Deployment) pipeline with DevSecOps practices using a simple Django-based web application. While the Django application the main focus of the project lies in automating the entire software delivery lifecycle, from code commit to cloud deployment.
+# 🐳 Docker Image Build Workflow (`ciimage.yml`)
 
+[![Docker Build Status](https://img.shields.io/github/actions/workflow/status/ANKITHMOHAN1307/CI-CD-Pipeline-Django-App/ciimage.yml?branch=newbrach-docer&label=Docker%20Build&style=for-the-badge&color=blue)](https://github.com/ANKITHMOHAN1307/CI-CD-Pipeline-Django-App/actions/workflows/ciimage.yml)
 
-# Docker Build & Push Workflow
+---
 
-This repository includes a **CI workflow** for building and publishing Docker images of the Django project.
+## 🧠 Overview
+This workflow automates **Docker image creation and publishing** to Docker Hub after successful CI checks.  
+It ensures every commit gets a unique, traceable image for deployment.
 
-##  Workflow Overview
-- Triggered on **push to main branch**.  
-- Builds a Docker image of the Django app.  
-- Pushes the image to **Docker Hub** for deployment.  
+---
 
-##  Workflow Steps
-1. **Checkout code** → Gets repository files.  
-2. **Login to Docker Hub** → Uses stored GitHub secrets.  
-3. **Build image** → Runs `docker build`.  
-4. **Push image** → Uploads to Docker Hub registry.  
+## 🚀 Workflow Purpose
+- Build Docker image for Django app  
+- Tag image with commit SHA for version control  
+- Push image to Docker Hub repository  
 
+---
 
-[![CI Django + Docker](https://github.com/ANKITHMOHAN1307/CI-CD-Pipeline-Django-App/actions/workflows/ci-database.yml/badge.svg?branch=main&event=milestone)](https://github.com/ANKITHMOHAN1307/CI-CD-Pipeline-Django-App/actions/workflows/ciimage.yml)
+## 📁 `.github/workflows/ciimage.yml`
+```yaml
+name: Docker Image Build & Push
 
-##  Learning Outcomes
-- Automates Docker image creation.  
-- Ensures reliable deployment builds.  
-- Integrates with container-based environments.  
+on:
+  push:
+    branches:
+      - newbrach-docer
 
-## 🖥️ Implementation
-The workflow file: `.github/workflows/docker-ciImage.yml`
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
 
-ct:latest
+      - name: Build Docker Image
+        run: docker build -t ankithmohan1307/django-app:${{ github.sha }} .
+
+      - name: Docker Login
+        run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
+
+      - name: Push Image to Docker Hub
+        run: docker push ankithmohan1307/django-app:${{ github.sha }}
+```
+
+---
+
+## 🧱 Key Actions
+
+| Step                    | Description                                        |
+| ----------------------- | -------------------------------------------------- |
+| **Checkout Repository** | Gets the latest code from `newbrach-docer` branch  |
+| **Build Docker Image**  | Builds the container image with app code           |
+| **Docker Login**        | Authenticates using GitHub Secrets                 |
+| **Push Image**          | Uploads the image to Docker Hub                    |
+
+---
+
+## 🔐 Required Secrets
+
+Configure these in **GitHub Repository Settings → Secrets and variables → Actions**:
+
+- `DOCKER_USERNAME` - Your Docker Hub username
+- `DOCKER_PASSWORD` - Your Docker Hub password or access token
+
+---
+
+## 🧾 Outcome
+
+* A new Docker image pushed on every commit
+* Image tagged as `ankithmohan1307/django-app:<commit-sha>`
+* Image ready for deployment via Railway or Azure
+
+---
+
+## 🌿 Branch
+**Target Branch:** `newbrach-docer`
+
+---
+
+## 🔗 Next Step
+
+The `ci-database.yml` workflow runs migrations and connects the app to the production database on the `database` branch.

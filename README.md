@@ -1,6 +1,6 @@
 ### Automated-CI-CD-Pipeline-Integration-for-a-Django-Web-Application
 
-              <br> ![Build Status](https://github.com/ANKITHMOHAN1307/CI-CD-Pipeline-Django-App/actions/workflows/ci-db.yml/badge.svg) <br>
+![Build Status](https://github.com/ANKITHMOHAN1307/CI-CD-Pipeline-Django-App/actions/workflows/ci-db.yml/badge.svg) <br>
 
 
 This project demonstrates the implementation of a complete CI/CD (Continuous Integration and Continuous Deployment) pipeline with DevOps practices using a simple Django-based web application. While the Django application the main focus of the project lies in automating the entire software delivery lifecycle, from code commit to cloud deployment.

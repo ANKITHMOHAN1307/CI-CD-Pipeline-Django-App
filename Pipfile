@@ -7,6 +7,7 @@ name = "pypi"
 django = "*"
 mysqlclient = "*"
 whitenoise = "*"
+requests = "*"
 
 [dev-packages]
 

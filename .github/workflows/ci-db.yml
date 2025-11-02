@@ -147,3 +147,22 @@ jobs:
           name: run-summary-${{ github.run_id }}
           path: run-summary.json
           retention-days: 30
+      - name: Send Metrics to Google Sheets
+        if: always()
+        run: |
+          curl -X POST \
+            -H "Content-Type: application/json" \
+            -d "{
+              \"timestamp\": \"$(date -u +%Y-%m-%dT%H:%M:%SZ)\",
+              \"run_id\": \"${{ github.run_id }}\",
+              \"run_number\": \"${{ github.run_number }}\",
+              \"sha\": \"${{ github.sha }}\",
+              \"status\": \"${{ job.status }}\",
+              \"branch\": \"${{ github.ref_name }}\",
+              \"actor\": \"${{ github.actor }}\",
+              \"workflow\": \"${{ github.workflow }}\",
+              \"triggered_by\": \"${{ github.event_name }}\",
+              \"started_at\": \"${{ github.event.repository.updated_at }}\",
+              \"completed_at\": \"$(date -u +%Y-%m-%dT%H:%M:%SZ)\"
+            }" \
+            "https://script.google.com/macros/s/AKfycbxOHta01RzEAA2_ovSE9BQICsUKS8IO7Lj6I0ETtQQM6SZy6j4z7OY-X_vTeESJytwb/exec"

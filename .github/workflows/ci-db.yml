@@ -112,15 +112,38 @@ jobs:
           
       - name: Deployment summary
         run: |
-            echo "======================================"
-            echo "🎉 Deployment Process Complete!"
-            echo "======================================"
-            echo "📦 Docker Image: ankith1307/myprojct:latest"
-            echo "🏷️  Commit SHA: ${{ github.sha }}"
-            echo "👤 Deployed by: ${{ github.actor }}"
-            echo "🌿 Branch: ${{ github.ref_name }}"
-            echo "🚀 Deployed to: Railway (${{ secrets.RAILWAY_ENVIRONMENT_NAME }})"
-            echo "======================================"
+          echo "======================================"
+          echo "🎉 Deployment Process Complete!"
+          echo "======================================"
+          echo "📦 Docker Image: ankith1307/myprojct:latest"
+          echo "🏷️  Commit SHA: ${{ github.sha }}"
+          echo "👤 Deployed by: ${{ github.actor }}"
+          echo "🌿 Branch: ${{ github.ref_name }}"
+          echo "🚀 Deployed to: Railway (${{ secrets.RAILWAY_ENVIRONMENT_NAME }})"
+          echo "======================================"
           
-
-
+      - name: Emit Run Summary
+        if: always()
+        run: |
+          cat > run-summary.json <<EOF
+          {
+            "sha": "${{ github.sha }}",
+            "run_id": "${{ github.run_id }}",
+            "run_number": "${{ github.run_number }}",
+            "workflow": "${{ github.workflow }}",
+            "status": "${{ job.status }}",
+            "timestamp": "$(date -u +%Y-%m-%dT%H:%M:%SZ)",
+            "triggered_by": "${{ github.event_name }}",
+            "branch": "${{ github.ref_name }}",
+            "actor": "${{ github.actor }}"
+          }
+          EOF
+          cat run-summary.json
+      
+      - name: Upload Run Summary
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: run-summary-${{ github.run_id }}
+          path: run-summary.json
+          retention-days: 30

@@ -23,7 +23,7 @@ def get_workflow_runs(owner, repo, workflow_name, token, days=30):
     """Fetch workflow runs from GitHub API"""
     headers = {"Authorization": f"token {token}"} if token else {}
     
-    # Calculate date range
+    # Calculate date rangen
     since = (datetime.now() - timedelta(days=days)).isoformat()
     
     url = f"https://api.github.com/repos/{owner}/{repo}/actions/runs"

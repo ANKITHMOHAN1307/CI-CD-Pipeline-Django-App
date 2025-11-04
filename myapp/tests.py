@@ -30,6 +30,7 @@ class UserInputTests(TestCase):
         user_data = {
             'name': 'Another User',
             'email': 'existing@example.com'
+            
         }
         response = self.client.post(reverse('register'), data=user_data)
         self.assertEqual(response.status_code, 302)  # Redirect to fail page

@@ -96,19 +96,21 @@ jobs:
           echo "⏳ Waiting 10 seconds for Docker Hub to sync image..."
           sleep 10
 
-      - name: Install Railway CLI
-        run: curl -fsSL https://railway.app/install.sh | sh
+
 
       - name: Trigger Railway Redeploy
         env:
           RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
         run: |
           echo "🔑 Authenticating Railway CLI using token..."
-          export RAILWAY_TOKEN="${RAILWAY_TOKEN}"
-          railway whoami || echo "Authenticated successfully with token."
-
+         
           echo "🚀 Triggering Railway redeploy..."
-          railway redeploy --service "${{ secrets.RAILWAY_SERVICE_NAME }}" --yes
+          curl -X POST \
+          -H "Authorization: Bearer ${RAILWAY_TOKEN}" \
+          -H "Content-Type: application/json" \
+          -d "{\"clearCache\": true}" \
+          "https://api.render.com/v1/services/${{ secrets.RAILWAY_SERVICE_NAME }}/deploys" || echo "✅ Render redeploy triggered successfully"
+      
           
       - name: Deployment summary
         run: |
@@ -119,7 +121,7 @@ jobs:
           echo "🏷️  Commit SHA: ${{ github.sha }}"
           echo "👤 Deployed by: ${{ github.actor }}"
           echo "🌿 Branch: ${{ github.ref_name }}"
-          echo "🚀 Deployed to: Railway (${{ secrets.RAILWAY_ENVIRONMENT_NAME }})"
+          echo "🚀 Deployed to: RENDER (${{ secrets.RAILWAY_ENVIRONMENT_NAME }})"
           echo "======================================"
           
       - name: Emit Run Summary

@@ -35,8 +35,6 @@ COPY . .
 # collect static files
 RUN python manage.py collectstatic --noinput
 
-# Ensure static files served
-COPY --from=builder /app/static /app/static
 
 # Expose port (optional, for local dev)
 EXPOSE 8000
